@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luma Salon — Where Beauty Meets Elegance</title>
+  <meta name="description" content="Luma Salon — premium hair, beauty and styling. Where beauty meets elegance." />
+  <link rel="icon" type="image/webp" href="images/lumaa-logo-white.webp" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!--
+    FONTS (4 faces total):
+    1. Playfair Display 600 normal  — section headings, stat numbers
+    2. Playfair Display 700 italic  — hero "Elegance" / service titles bold
+    3. Cormorant Garamond 500 italic — quotes, brand wordmark
+    4. Jost 400 / 600               — all body, labels, nav, eyebrows
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Playfair+Display:ital,wght@0,600;1,700&family=Jost:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <a href="#home" class="brand">
+      <!-- white version: visible over hero / dark navbar -->
+      <img src="images/lumaa-logo-white.webp" alt="Lumaa Salon" class="logo logo-white" />
+      <!-- olive version: visible when navbar turns light on scroll -->
+      <img src="images/lumaa-logo-olive.webp" alt="Lumaa Salon" class="logo logo-olive" />
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScYBFybON-J7nFKHJC2IQqXxigCQ_ar4FxfF-Mzsk_BcsSYzg/viewform" target="_blank" rel="noopener">Franchise</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <!-- 2-image slider — JS translates track left every 3 s -->
+    <div class="hero-slides">
+      <div class="hero-track">
+        <div class="hero-slide slide-1"></div>
+        <div class="hero-slide slide-2"></div>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Where Beauty<br>Meets <em>Elegance</em></h1>
+    </div>
+    <!-- dot indicators -->
+    <div class="slide-dots">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">What We Offer</p>
+        <h2>Our Curated Services</h2>
+        <span class="head-rule"></span>
+      </div>
+
+      <!-- PILL TOGGLE -->
+      <div class="svc-toggle-wrap reveal">
+        <div class="svc-toggle" role="group" aria-label="Select gender">
+          <button id="idx-btn-women" class="svc-tab active" onclick="idxSwitch('women')">Women</button>
+          <button id="idx-btn-men" class="svc-tab" onclick="idxSwitch('men')">Men</button>
+        </div>
+      </div>
+
+      <!-- WOMEN PANEL -->
+      <div id="idx-panel-women" class="idx-panel active">
+        <div class="idx-grid">
+
+          <div class="idx-item reveal" onclick="openGallery('women-hair')" role="button" tabindex="0">
+            <img src="images/women-hair-blowout.jpg" alt="Hair" class="idx-img" />
+            <div class="idx-body">
+              <h4>Hair</h4>
+              <p>Cuts, blowdry &amp; updos, balayage, highlights &amp; global colour, plus keratin, smoothening &amp; perming.</p>
+              <span class="idx-link">View Photos &#8594;</span>
+            </div>
+          </div>
+
+          <div class="idx-item reveal d1" onclick="openGallery('women-nail')" role="button" tabindex="0">
+            <img src="images/women-nail-marble.jpg" alt="Nail Art" class="idx-img" />
+            <div class="idx-body">
+              <h4>Nail Art</h4>
+              <p>Gel &amp; acrylic extensions with French, marble, chrome, cat-eye, ombre &amp; bridal nail art.</p>
+              <span class="idx-link">View Photos &#8594;</span>
+            </div>
+          </div>
+
+          <div class="idx-item reveal d2" onclick="openGallery('women-skin')" role="button" tabindex="0">
+            <img src="images/women-skin-facial.jpg" alt="Skin &amp; Face" class="idx-img" />
+            <div class="idx-body">
+              <h4>Skin</h4>
+              <p>Facials, hydra-facials &amp; clean-ups, threading &amp; D-tan, plus body polishing, bleach &amp; massage.</p>
+              <span class="idx-link">View Photos &#8594;</span>
+            </div>
+          </div>
+
+          <div class="idx-item reveal d3" onclick="openGallery('women-handfoot')" role="button" tabindex="0">
+            <img src="images/women-foot-spa.jpg" alt="Hand &amp; Foot" class="idx-img" />
+            <div class="idx-body">
+              <h4>Hand &amp; Foot</h4>
+              <p>Manicures, pedicures, soothing massage, foot soak &amp; D-tan for groomed hands &amp; feet.</p>
+              <span class="idx-link">View Photos &#8594;</span>
+            </div>
+          </div>
+
+          <div class="idx-item reveal d4" onclick="openGallery('women-makeup')" role="button" tabindex="0">
+            <img src="images/women-makeup-bridal-hd.jpg" alt="Makeup" class="idx-img" />
+            <div class="idx-body">
+              <h4>Makeup</h4>
+              <p>Party, bridal HD &amp; airbrush makeup with saree draping &amp; destination-ready looks.</p>
+              <span class="idx-link">View Photos &#8594;</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MEN PANEL -->
+      <div id="idx-panel-men" class="idx-panel">
+        <div class="idx-grid">
+
+          <div class="idx-item reveal" onclick="openGallery('men-hair')" role="button" tabindex="0">
+            <img src="images/men-hair-styling.jpg" alt="Haircut" class="idx-img" style="object-position: top;" />
+            <div class="idx-body">
+              <h4>Hair Cut</h4>
+              <p>Haircuts, restyles, textured crops, head shave, oil massage &amp; hair spa.</p>
+              <span class="idx-link">View Photos &#8594;</span>
+            </div>
+          </div>
+
+          <div class="idx-item reveal d1" onclick="openGallery('men-beard')" role="button" tabindex="0">
+            <img src="images/men-hair-classic-beard.jpg" alt="Beard" class="idx-img" style="object-position: top;" />
+            <div class="idx-body">
+              <h4>Beard Styling</h4>
+              <p>Beard sculpting &amp; styling, classic &amp; designer beards, line-ups, clean shaves &amp; beard spa.</p>
+              <span class="idx-link">View Photos &#8594;</span>
+            </div>
+          </div>
+
+          <div class="idx-item reveal d2" onclick="openGallery('men-colour')" role="button" tabindex="0">
+            <img src="images/men-colour-cover.jpg" alt="Hair Rituals" class="idx-img" />
+            <div class="idx-body">
+              <h4>Hair Rituals</h4>
+              <p>Hair &amp; beard colour, highlights, perming, rebonding, smoothening &amp; keratin treatments.</p>
+              <span class="idx-link">View Photos &#8594;</span>
+            </div>
+          </div>
+
+          <div class="idx-item reveal d3" onclick="openGallery('men-skin')" role="button" tabindex="0">
+            <img src="images/men-skin-hydra-facial.jpg" alt="Skin" class="idx-img" />
+            <div class="idx-body">
+              <h4>Skin</h4>
+              <p>Clean-ups, facials &amp; hydra-facials, D-tan, face packs, manicures, pedicures &amp; nail grooming.</p>
+              <span class="idx-link">View Photos &#8594;</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Our Work</p>
+        <h2>The Gallery</h2>
+        <span class="head-rule"></span>
+      </div>
+      <div class="gallery-grid">
+        <div class="g-item g1 reveal">
+          <span class="g-shine"></span>
+          <span class="g-caption"><span class="g-eyebrow">The Space</span><span class="g-title">Our Studio</span></span>
+        </div>
+        <div class="g-item g2 reveal d1">
+          <span class="g-shine"></span>
+          <span class="g-caption"><span class="g-eyebrow">Interior</span><span class="g-title">The Salon Floor</span></span>
+        </div>
+        <div class="g-item g3 reveal d2">
+          <span class="g-shine"></span>
+          <span class="g-caption"><span class="g-eyebrow">Couture</span><span class="g-title">Bridal Looks</span></span>
+        </div>
+        <div class="g-item g4 reveal d3">
+          <span class="g-shine"></span>
+          <span class="g-caption"><span class="g-eyebrow">Ambiance</span><span class="g-title">The Lounge</span></span>
+        </div>
+        <div class="g-item g5 reveal d4">
+          <span class="g-shine"></span>
+          <span class="g-caption"><span class="g-eyebrow">Comfort</span><span class="g-title">Styling Suite</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="reviews-head reveal">
+        <p class="eyebrow">Client Love</p>
+        <h2>What Our Clients Say</h2>
+      </div>
+
+      <!-- Continuous right-moving marquee; the strip is duplicated so the loop is seamless -->
+      <div class="reviews-marquee reveal">
+        <div class="rev-track">
+          <div class="rev-strip">
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">Absolutely loved my experience! Madona is so talented and patient &mdash; I walked out feeling like the best version of myself. Highly recommend!</p>
+              <div class="reviewer">
+                <span class="avatar">PS</span>
+                <div>
+                  <p class="r-name">Priya Sharma</p>
+                  <p class="r-meta">Google Review &middot; Bridal Makeup</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">One of the best salon experiences I've ever had. They truly listened and gave me the best hair I've had in years. Will definitely be back!</p>
+              <div class="reviewer">
+                <span class="avatar">AM</span>
+                <div>
+                  <p class="r-name">Ananya Mehta</p>
+                  <p class="r-meta">Google Review &middot; Hair Colour</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">Hands down the best salon in the city. Premium service yet so comfortable, with a flawless finish. A solid 10/10 experience.</p>
+              <div class="reviewer">
+                <span class="avatar">RK</span>
+                <div>
+                  <p class="r-name">Rohan Kapoor</p>
+                  <p class="r-meta">Google Review &middot; Men's Grooming</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">From the moment I walked in I felt completely pampered. My skin has honestly never looked better. Can't wait for my next visit!</p>
+              <div class="reviewer">
+                <span class="avatar">SV</span>
+                <div>
+                  <p class="r-name">Sneha Verma</p>
+                  <p class="r-meta">Google Review &middot; Hydra Facial</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">Truly five-star in every way. Madona understood exactly what I wanted and nailed it. Couldn't be happier with the results.</p>
+              <div class="reviewer">
+                <span class="avatar">KN</span>
+                <div>
+                  <p class="r-name">Kavya Nair</p>
+                  <p class="r-meta">Google Review &middot; Balayage</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">Such a beautiful, welcoming space and flawless work. My friends keep asking where I got it done. Five stars all the way!</p>
+              <div class="reviewer">
+                <span class="avatar">AG</span>
+                <div>
+                  <p class="r-name">Aarti Gupta</p>
+                  <p class="r-meta">Google Review &middot; Nail Art</p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- duplicate strip for the seamless loop -->
+          <div class="rev-strip" aria-hidden="true">
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">Absolutely loved my experience! Madona is so talented and patient &mdash; I walked out feeling like the best version of myself. Highly recommend!</p>
+              <div class="reviewer">
+                <span class="avatar">PS</span>
+                <div>
+                  <p class="r-name">Priya Sharma</p>
+                  <p class="r-meta">Google Review &middot; Bridal Makeup</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">One of the best salon experiences I've ever had. They truly listened and gave me the best hair I've had in years. Will definitely be back!</p>
+              <div class="reviewer">
+                <span class="avatar">AM</span>
+                <div>
+                  <p class="r-name">Ananya Mehta</p>
+                  <p class="r-meta">Google Review &middot; Hair Colour</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">Hands down the best salon in the city. Premium service yet so comfortable, with a flawless finish. A solid 10/10 experience.</p>
+              <div class="reviewer">
+                <span class="avatar">RK</span>
+                <div>
+                  <p class="r-name">Rohan Kapoor</p>
+                  <p class="r-meta">Google Review &middot; Men's Grooming</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">From the moment I walked in I felt completely pampered. My skin has honestly never looked better. Can't wait for my next visit!</p>
+              <div class="reviewer">
+                <span class="avatar">SV</span>
+                <div>
+                  <p class="r-name">Sneha Verma</p>
+                  <p class="r-meta">Google Review &middot; Hydra Facial</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">Truly five-star in every way. Madona understood exactly what I wanted and nailed it. Couldn't be happier with the results.</p>
+              <div class="reviewer">
+                <span class="avatar">KN</span>
+                <div>
+                  <p class="r-name">Kavya Nair</p>
+                  <p class="r-meta">Google Review &middot; Balayage</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="review-card">
+              <span class="quote-mark">&ldquo;</span>
+              <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <p class="review-text">Such a beautiful, welcoming space and flawless work. My friends keep asking where I got it done. Five stars all the way!</p>
+              <div class="reviewer">
+                <span class="avatar">AG</span>
+                <div>
+                  <p class="r-name">Aarti Gupta</p>
+                  <p class="r-meta">Google Review &middot; Nail Art</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Read all reviews CTA -->
+      <div class="reviews-cta reveal">
+        <a href="reviews.html" class="btn-outline-reviews">
+          View More Reviews &nbsp;&#8594;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BRAND PARTNERS ===== -->
+  <section class="partners">
+    <div class="container">
+      <h2 class="partners-title reveal">Our Partner Brands</h2>
+    </div>
+
+    <div class="brand-marquee-wrap">
+
+      <!-- Row 1 — scrolls RIGHT -->
+      <div class="brand-track track-right">
+        <div class="brand-strip">
+          <div class="brand-cell"><div class="bl bl-loreal"><span class="bl-main">L'OR&#201;AL</span><span class="bl-rule"></span><span class="bl-sub">PROFESSIONNEL</span><span class="bl-sub2">PARIS</span></div></div>
+          <div class="brand-cell"><div class="bl bl-schwarzkopf"><span class="bl-main">Schwarzkopf</span><span class="bl-sub">PROFESSIONAL</span></div></div>
+          <div class="brand-cell"><div class="bl bl-wella"><span class="bl-main">Wella</span><span class="bl-sub">PROFESSIONALS</span></div></div>
+          <div class="brand-cell"><div class="bl bl-biotop"><span class="bl-main">BIOTOP</span><span class="bl-sub">PROFESSIONAL</span></div></div>
+          <div class="brand-cell"><div class="bl bl-gk"><span class="gk-letters">GK</span><div class="gk-right"><span class="gk-hair">HAIR</span><span class="gk-pro">PROFESSIONAL</span></div></div></div>
+          <div class="brand-cell"><div class="bl bl-tenx"><span class="bl-main">3TEN<span class="tenx-x">X</span></span></div></div>
+          <div class="brand-cell"><div class="bl bl-floractive"><span class="bl-main">Floractive</span><span class="bl-sub">PROFESSIONAL</span></div></div>
+          <div class="brand-cell"><div class="bl bl-olaplex"><span class="bl-main">OLAPLEX</span></div></div>
+        </div>
+        <div class="brand-strip" aria-hidden="true">
+          <div class="brand-cell"><div class="bl bl-loreal"><span class="bl-main">L'OR&#201;AL</span><span class="bl-rule"></span><span class="bl-sub">PROFESSIONNEL</span><span class="bl-sub2">PARIS</span></div></div>
+          <div class="brand-cell"><div class="bl bl-schwarzkopf"><span class="bl-main">Schwarzkopf</span><span class="bl-sub">PROFESSIONAL</span></div></div>
+          <div class="brand-cell"><div class="bl bl-wella"><span class="bl-main">Wella</span><span class="bl-sub">PROFESSIONALS</span></div></div>
+          <div class="brand-cell"><div class="bl bl-biotop"><span class="bl-main">BIOTOP</span><span class="bl-sub">PROFESSIONAL</span></div></div>
+          <div class="brand-cell"><div class="bl bl-gk"><span class="gk-letters">GK</span><div class="gk-right"><span class="gk-hair">HAIR</span><span class="gk-pro">PROFESSIONAL</span></div></div></div>
+          <div class="brand-cell"><div class="bl bl-tenx"><span class="bl-main">3TEN<span class="tenx-x">X</span></span></div></div>
+          <div class="brand-cell"><div class="bl bl-floractive"><span class="bl-main">Floractive</span><span class="bl-sub">PROFESSIONAL</span></div></div>
+          <div class="brand-cell"><div class="bl bl-olaplex"><span class="bl-main">OLAPLEX</span></div></div>
+        </div>
+      </div>
+
+      <!-- Row 2 — scrolls LEFT -->
+      <div class="brand-track track-left">
+        <div class="brand-strip">
+          <div class="brand-cell"><div class="bl bl-cadiveu"><span class="bl-main">cadiveu</span><span class="bl-sub">BRASIL &middot; PROFESSIONAL</span></div></div>
+          <div class="brand-cell"><div class="bl bl-casmara"><span class="bl-main">CASMARA</span></div></div>
+          <div class="brand-cell"><div class="bl bl-kanpeki"><span class="bl-main">KANPEKI</span></div></div>
+          <div class="brand-cell"><div class="bl bl-thalgo"><span class="bl-main">THALGO</span></div></div>
+          <div class="brand-cell"><div class="bl bl-dermalogica">dermalogica<sup>&#174;</sup></div></div>
+          <div class="brand-cell"><div class="bl bl-o3"><span class="bl-main">O3<sup>+</sup></span></div></div>
+          <div class="brand-cell"><div class="bl bl-alga"><span class="bl-main">ALGA</span><span class="bl-sub">SPA</span></div></div>
+          <div class="brand-cell"><div class="bl bl-avl"><span class="bl-main">AVL</span></div></div>
+        </div>
+        <div class="brand-strip" aria-hidden="true">
+          <div class="brand-cell"><div class="bl bl-cadiveu"><span class="bl-main">cadiveu</span><span class="bl-sub">BRASIL &middot; PROFESSIONAL</span></div></div>
+          <div class="brand-cell"><div class="bl bl-casmara"><span class="bl-main">CASMARA</span></div></div>
+          <div class="brand-cell"><div class="bl bl-kanpeki"><span class="bl-main">KANPEKI</span></div></div>
+          <div class="brand-cell"><div class="bl bl-thalgo"><span class="bl-main">THALGO</span></div></div>
+          <div class="brand-cell"><div class="bl bl-dermalogica">dermalogica<sup>&#174;</sup></div></div>
+          <div class="brand-cell"><div class="bl bl-o3"><span class="bl-main">O3<sup>+</sup></span></div></div>
+          <div class="brand-cell"><div class="bl bl-alga"><span class="bl-main">ALGA</span><span class="bl-sub">SPA</span></div></div>
+          <div class="brand-cell"><div class="bl bl-avl"><span class="bl-main">AVL</span></div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <div class="footer-card">
+
+      <div class="footer-top">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <h3 class="footer-brand-title">Contact Us</h3>
+          <p class="footer-desc">Lumaa Salon blends expert artistry with premium care — hair, skin, bridal and nails — crafted to help you look and feel your absolute best.</p>
+          <div class="footer-socials">
+            <a href="tel:+919205809126" aria-label="Call us">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/lumaasalon.official" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="https://wa.me/919205809126" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.74.46 3.38 1.26 4.8L2.05 22l5.43-1.43a9.84 9.84 0 0 0 4.56 1.11c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm4.88 13.42c-.2.56-1.16 1.08-1.6 1.14-.4.06-.93.09-1.5-.09-.35-.11-.8-.26-1.36-.52-2.39-1.02-3.96-3.41-4.08-3.57-.12-.15-.97-1.28-.97-2.44 0-1.16.61-1.73.83-1.97.22-.24.48-.3.63-.3h.45c.14 0 .34-.05.53.41.2.48.68 1.67.74 1.79.06.12.1.26.02.42-.08.16-.12.25-.24.39-.12.13-.25.3-.36.4-.12.11-.25.22-.1.44.14.22.6.97 1.27 1.57.87.77 1.6 1.01 1.83 1.12.23.11.36.09.49-.05.13-.14.56-.65.71-.88.15-.22.3-.18.5-.11.21.07 1.34.63 1.57.75.23.11.38.16.44.25.06.09.06.54-.14 1.09z"/></svg>
+            </a>
+            <a href="https://maps.app.goo.gl/RKYYWeZqwAiUuoFEA" target="_blank" rel="noopener" aria-label="Google Maps">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mridul@lumaasalon.com" target="_blank" rel="noopener" aria-label="Email">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Link columns -->
+        <nav class="footer-cols">
+          <div class="footer-col">
+            <h4 class="footer-col-title">Explore</h4>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#reviews">Reviews</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScYBFybON-J7nFKHJC2IQqXxigCQ_ar4FxfF-Mzsk_BcsSYzg/viewform" target="_blank" rel="noopener">Franchise</a>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Services</h4>
+            <a href="#services" onclick="idxSwitch('women')">Women's Services</a>
+            <a href="#services" onclick="idxSwitch('men')">Men's Services</a>
+            <a href="#services" onclick="event.preventDefault(); idxSwitch('women'); openGallery('women-hair');">Hair &amp; Styling</a>
+            <a href="#services" onclick="event.preventDefault(); idxSwitch('women'); openGallery('women-makeup');">Bridal &amp; Makeup</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 Lumaa Salon. All rights reserved.</p>
+        <p class="footer-fine">Prices subject to consultation &middot; GST extra</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ===== SERVICE PHOTO GALLERY (lightbox) ===== -->
+  <div class="svc-modal" id="svcModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Service photos">
+    <div class="svc-modal-backdrop" onclick="closeGallery()"></div>
+    <div class="svc-modal-panel">
+      <button class="svc-modal-close" onclick="closeGallery()" aria-label="Close gallery">&times;</button>
+      <p class="svc-modal-eyebrow">Lumaa Salon</p>
+      <h3 class="svc-modal-title" id="svcModalTitle"></h3>
+      <div class="svc-stage">
+        <button class="svc-nav svc-prev" onclick="galleryStep(-1)" aria-label="Previous photo">&#8249;</button>
+        <img class="svc-stage-img" id="svcStageImg" src="" alt="" />
+        <button class="svc-nav svc-next" onclick="galleryStep(1)" aria-label="Next photo">&#8250;</button>
+      </div>
+      <p class="svc-counter" id="svcCounter"></p>
+      <div class="svc-thumbs" id="svcThumbs"></div>
+    </div>
+  </div>
+
+  <script>
+    // Services gender toggle
+    function idxSwitch(gender) {
+      document.getElementById('idx-panel-women').classList.toggle('active', gender === 'women');
+      document.getElementById('idx-panel-men').classList.toggle('active', gender === 'men');
+      document.getElementById('idx-btn-women').classList.toggle('active', gender === 'women');
+      document.getElementById('idx-btn-men').classList.toggle('active', gender === 'men');
+    }
+
+    // ===== Service photo gallery (lightbox) =====
+    var IMG = 'images/';
+    // Each photo carries its own exact service name (shown under the gallery image).
+    var SVC_GALLERY = {
+      'women-hair': { title: 'Hair Rituals', photos: [
+        { src: 'women-hair-balayage',      name: 'Balayage' },
+        { src: 'women-hair-blonde',        name: 'Blonding' },
+        { src: 'women-hair-colour',        name: 'Hair Color' },
+        { src: 'women-hair-curls',         name: 'Hair Color' },
+        { src: 'women-hair-haircut',       name: 'Haircut' },
+        { src: 'women-hair-heat-styling',  name: 'Keratin' },
+        { src: 'women-hair-highlights',    name: 'Highlights' },
+        { src: 'women-hair-layers',        name: 'Blowdry' },
+        { src: 'women-hair-natural-curls', name: 'Hair Extension' },
+        { src: 'women-hair-perming',       name: 'Highlights' },
+        { src: 'women-hair-smoothening',   name: 'Nanoplastia' },
+        { src: 'women-hair-updo',          name: 'Hair Color' },
+        { src: 'women-hair-waves',         name: 'Ombre' } ] },
+      'women-nail': { title: 'Nail Art', photos: [
+        { src: 'women-nail-marble',         name: 'Nail Extensions' },
+        { src: 'women-nail-babyboomer',     name: 'Acrylic Extensions' },
+        { src: 'women-nail-bridal-3d',      name: '3D Nail Art' },
+        { src: 'women-nail-bridal-lace',    name: 'Bridal Nail Art' },
+        { src: 'women-nail-cat-eye',        name: 'Cat Eye' },
+        { src: 'women-nail-chrome',         name: 'Chrome Art' },
+        { src: 'women-nail-french-art',     name: 'French' },
+        { src: 'women-nail-french-classic', name: 'Nail Extensions' },
+        { src: 'women-nail-gel-paint',      name: 'Shady Gel' },
+        { src: 'women-nail-gold-art',       name: 'Nail Art' },
+        { src: 'women-nail-mandala-black',  name: 'Mandalas' },
+        { src: 'women-nail-mandala-pastel', name: 'Mandalas' },
+        { src: 'women-nail-marble-grey',    name: 'Stone/Flat Art' },
+        { src: 'women-nail-ombre',          name: 'Ombre Nail Art' },
+        { src: 'women-nail-rainbow',        name: 'Ombre Nail Art' },
+        { src: 'women-nail-stiletto',       name: 'Mandalas' } ] },
+      'women-skin': { title: 'Skin', photos: [
+        { src: 'women-skin-facial',    name: 'Facial & Cleanup' },
+        { src: 'women-skin-cleanup',   name: 'Threading' },
+        { src: 'women-skin-glow',      name: 'Hydra Facial' },
+        { src: 'women-body-polishing', name: 'Waxing' } ] },
+      'women-handfoot': { title: 'Hand & Foot', photos: [
+        { src: 'women-foot-spa',      name: 'Hand & Foot Massage' },
+        { src: 'women-hand-manicure', name: 'Manicure' },
+        { src: 'women-foot-pedicure', name: 'Pedicure' } ] },
+      'women-makeup': { title: 'Makeup', photos: [
+        { src: 'women-makeup-bridal-hd', name: 'Bridal HD Makeup' },
+        { src: 'women-makeup-bridal',    name: 'Bridal Makeup' },
+        { src: 'women-makeup-eye',       name: 'Eye Makeup' },
+        { src: 'women-makeup-sagan',     name: 'Party Makeup' },
+        { src: 'women-hair-blowout',     name: 'Party Makeup' } ] },
+      'men-hair': { title: 'Hair Cut', photos: [
+        { src: 'men-hair-styling',      name: 'Hair Cut' },
+        { src: 'men-hair-haircut',      name: 'Hair Cut' },
+        { src: 'men-hair-restyle',      name: 'Hair Cut' },
+        { src: 'men-hair-textured-crop', name: 'Hair Cut' } ] },
+      'men-beard': { title: 'Beard Styling', photos: [
+        { src: 'men-hair-classic-beard', name: 'Beard' },
+        { src: 'men-hair-beard-sculpt',  name: 'Beard' },
+        { src: 'men-hair-beard-styling', name: 'Beard' },
+        { src: 'men-hair-crop-beard',    name: 'Beard' },
+        { src: 'men-hair-lumaa-beard',   name: 'Beard' } ] },
+      'men-colour': { title: 'Hair Rituals', photos: [
+        { src: 'men-colour-colour-highlights', name: 'Hair Color (Men)' },
+        { src: 'men-colour-highlights',        name: 'Hair Color (Men)' },
+        { src: 'men-colour-texture-curls',     name: 'Hair Spa (Men)' },
+        { src: 'men-colour-curl-styling',      name: 'Keratin Treatment (Men)' },
+        { src: 'men-colour-perming',           name: 'Hair Spa (Men)' },
+        { src: 'men-colour-rebonding',         name: 'Hair Smoothening' },
+        { src: 'men-colour-smoothening',       name: 'Hair Smoothening' } ] },
+      'men-skin': { title: 'Skin', photos: [
+        { src: 'men-skin-hydra-facial', name: 'Hydra Facial' },
+        { src: 'men-skin-face-pack',    name: 'Facial & Cleanup' },
+        { src: 'men-hand-manicure',     name: 'Manicure' },
+        { src: 'men-foot-pedicure',     name: 'Pedicure' } ] }
+    };
+
+    var galleryKey = null, galleryIndex = 0;
+
+    function openGallery(key) {
+      var data = SVC_GALLERY[key];
+      if (!data) return;
+      galleryKey = key;
+      galleryIndex = 0;
+      var thumbs = document.getElementById('svcThumbs');
+      thumbs.innerHTML = '';
+      data.photos.forEach(function (photo, i) {
+        var t = document.createElement('img');
+        t.src = IMG + photo.src + '.jpg';
+        t.alt = photo.name;
+        t.className = 'svc-thumb';
+        t.loading = 'lazy';
+        t.addEventListener('click', function () { showGalleryPhoto(i); });
+        thumbs.appendChild(t);
+      });
+      // single-photo services: hide nav + thumbs
+      var single = data.photos.length < 2;
+      document.querySelector('.svc-prev').style.display = single ? 'none' : '';
+      document.querySelector('.svc-next').style.display = single ? 'none' : '';
+      thumbs.style.display = single ? 'none' : '';
+      showGalleryPhoto(0);
+      var modal = document.getElementById('svcModal');
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showGalleryPhoto(i) {
+      var data = SVC_GALLERY[galleryKey];
+      if (!data) return;
+      var n = data.photos.length;
+      galleryIndex = (i + n) % n;
+      var photo = data.photos[galleryIndex];
+      document.getElementById('svcStageImg').src = IMG + photo.src + '.jpg';
+      document.getElementById('svcStageImg').alt = photo.name;
+      // show the photo's own service name where the category title sits
+      document.getElementById('svcModalTitle').textContent = photo.name;
+      document.getElementById('svcCounter').textContent = (galleryIndex + 1) + ' / ' + n;
+      var thumbs = document.querySelectorAll('#svcThumbs .svc-thumb');
+      thumbs.forEach(function (t, idx) { t.classList.toggle('active', idx === galleryIndex); });
+      if (thumbs[galleryIndex]) {
+        thumbs[galleryIndex].scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+      }
+    }
+
+    function galleryStep(dir) { showGalleryPhoto(galleryIndex + dir); }
+
+    function closeGallery() {
+      var modal = document.getElementById('svcModal');
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // keyboard: Esc closes, arrows navigate
+    document.addEventListener('keydown', function (e) {
+      var modal = document.getElementById('svcModal');
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeGallery();
+      else if (e.key === 'ArrowLeft') galleryStep(-1);
+      else if (e.key === 'ArrowRight') galleryStep(1);
+    });
+
+    // keyboard: Enter/Space on a focused service card opens its gallery
+    document.querySelectorAll('.idx-item').forEach(function (card) {
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+      });
+    });
+
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', function () {
+      navLinks.classList.toggle('open');
+      this.classList.toggle('active');
+    });
+    // Close mobile menu when a link is tapped
+    navLinks.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+      });
+    });
+
+    // Solidify navbar on scroll
+    window.addEventListener('scroll', function () {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll-reveal animations
+    const revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+
+    // Animated number counters (fire once when stats scroll into view)
+    function runCounter(el) {
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const duration = 2000;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        const value = Math.floor(eased * target);
+        el.textContent = value.toLocaleString() + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+    const counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          runCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.counter').forEach(function (el) {
+      counterObserver.observe(el);
+    });
+
+    // Hero slider — translate track left every 3 s
+    (function () {
+      var track   = document.querySelector('.hero-track');
+      var dots    = document.querySelectorAll('.slide-dots .dot');
+      var total   = 2;
+      var current = 0;
+
+      function goTo(n) {
+        current = (n + total) % total;
+        // each slide is 1/2 of the track width
+        track.style.transform = 'translateX(-' + (current * 50) + '%)';
+        dots.forEach(function (d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          clearInterval(timer);
+          goTo(+this.dataset.index);
+          timer = setInterval(advance, 3000);
+        });
+      });
+
+      function advance() { goTo(current + 1); }
+      var timer = setInterval(advance, 3000);
+    })();
+    // Salon open/closed badge — open every day 10:00 AM – 9:00 PM IST
+    (function updateStatus() {
+      var dot  = document.getElementById('statusDot');
+      var text = document.getElementById('statusText');
+      if (!dot || !text) return;
+
+      var now    = new Date();
+      var hour   = now.getHours();
+      var minute = now.getMinutes();
+      var total  = hour * 60 + minute;   // minutes since midnight
+      var open   = 10 * 60;              // 10:00 AM
+      var close  = 21 * 60;              // 9:00 PM
+
+      if (total >= open && total < close) {
+        dot.style.background  = '#4ade80';
+        dot.style.boxShadow   = '0 0 0 3px rgba(74,222,128,0.25)';
+        text.textContent      = 'Open now · closes 9:00 PM';
+      } else {
+        dot.style.background  = '#f87171';
+        dot.style.boxShadow   = '0 0 0 3px rgba(248,113,113,0.25)';
+        text.textContent      = 'Closed · opens 10:00 AM';
+      }
+    })();
+  </script>
+</body>
+</html>

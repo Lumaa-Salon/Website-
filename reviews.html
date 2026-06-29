@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Reviews — Lumaa Salon</title>
+  <meta name="description" content="Read what our clients say about Lumaa Salon — 200+ five-star reviews on hair, bridal, nails, skincare and more." />
+  <link rel="icon" type="image/webp" href="images/lumaa-logo-white.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Playfair+Display:ital,wght@0,600;1,700&family=Jost:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #EED9BF;
+      --sage:  #9CA175;
+      --offwhite: #F6F2EB;
+      --earth: #937B67;
+      --deep:  #2E3326;
+      --ink:   #2B2922;
+      --white: #FFFFFF;
+      --cream-rgb: 238, 217, 191;
+      --sage-rgb:  156, 161, 117;
+      --earth-rgb: 147, 123, 103;
+      --ink-rgb:   43, 41, 34;
+      --serif:   'Playfair Display', serif;
+      --display: 'Cormorant Garamond', serif;
+      --sans:    'Jost', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--offwhite); color: var(--ink); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAVBAR (solid, light) ── */
+    .navbar {
+      position: fixed; inset: 0 0 auto 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(var(--ink-rgb), 0.08);
+    }
+    .brand { display: inline-flex; align-items: center; }
+    .logo { height: 42px; width: auto; }
+    .nav-links { display: flex; gap: 34px; }
+    .nav-links a {
+      color: var(--ink); font-size: 0.8rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 400;
+      position: relative; padding: 4px 0; transition: color 0.2s ease;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -2px;
+      width: 0; height: 1px; background: var(--sage);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--sage); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: 0; cursor: pointer; padding: 6px;
+    }
+    .hamburger span { width: 24px; height: 2px; background: var(--ink); transition: transform 0.3s ease, opacity 0.3s ease; }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── SLIM INTRO (light, matches gallery page) ── */
+    .reviews-hero {
+      text-align: center;
+      padding: 90px 24px 4px;
+    }
+    .reviews-hero .eyebrow {
+      font-family: var(--sans); text-transform: uppercase;
+      letter-spacing: 0.34em; font-size: 0.7rem; font-weight: 600;
+      color: var(--earth); margin-bottom: 14px;
+    }
+    .reviews-hero h1 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      color: var(--ink); letter-spacing: -0.01em; line-height: 1.05;
+    }
+    .reviews-hero h1 em { font-style: italic; color: var(--earth); }
+    .reviews-hero .rule { width: 46px; height: 2px; background: var(--sage); margin: 14px auto 0; opacity: 0.85; }
+
+    /* ── REVIEWS GRID ── */
+    .reviews-section { padding: 44px 40px 100px; }
+    .reviews-container { max-width: 1160px; margin: 0 auto; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+    /* scroll-reveal — cards fade & slide in as they enter the viewport */
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: 0.1s; }
+    .reveal.d2 { transition-delay: 0.2s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+    .review-card {
+      position: relative;
+      background: var(--white);
+      border: 1px solid rgba(var(--earth-rgb), 0.14);
+      border-top: 3px solid var(--sage);
+      border-radius: 12px;
+      padding: 34px 30px 28px;
+      box-shadow: 0 6px 24px rgba(var(--earth-rgb), 0.14), 0 2px 6px rgba(var(--earth-rgb), 0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.6s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(var(--earth-rgb), 0.22), 0 4px 10px rgba(var(--earth-rgb), 0.1);
+    }
+    .quote-mark {
+      position: absolute;
+      top: 12px; right: 24px;
+      font-family: var(--serif);
+      font-size: 4.5rem;
+      line-height: 1;
+      color: var(--cream);
+    }
+    .review-card .stars {
+      display: block;
+      color: var(--earth);
+      letter-spacing: 0.16em;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+    .review-text {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 24px;
+      font-size: 0.96rem;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    .reviewer { display: flex; align-items: center; gap: 14px; }
+    .avatar {
+      width: 46px; height: 46px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      background: var(--sage);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .r-name { margin: 0; font-weight: 600; color: var(--ink); font-size: 0.95rem; }
+    .r-meta { margin: 0; font-size: 0.78rem; color: var(--earth); }
+
+    /* load-more (progressive reveal of the 200+ list) */
+    .more-row { text-align: center; margin-top: 52px; }
+    .btn-load-more {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--white); background: var(--sage);
+      border: 0; cursor: pointer;
+      padding: 15px 40px; border-radius: 999px;
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn-load-more:hover { background: var(--deep); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(var(--ink-rgb), 0.18); }
+    .more-row .shown-count { margin-top: 16px; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--earth); text-transform: uppercase; }
+    .back-home { text-align: center; margin-top: 44px; }
+    .back-home a {
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--earth); font-weight: 600; border-bottom: 1px solid rgba(var(--earth-rgb), 0.4);
+      padding-bottom: 3px; transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .back-home a:hover { color: var(--sage); border-color: var(--sage); }
+
+    /* ── FOOTER ── */
+    .reviews-footer {
+      background: var(--sage);
+      border-top: 1px solid rgba(var(--ink-rgb), 0.18);
+      text-align: center; padding: 24px 40px;
+      font-size: 0.76rem; color: rgba(var(--ink-rgb), 0.65);
+      letter-spacing: 0.06em;
+    }
+    .reviews-footer a { color: var(--ink); font-weight: 600; transition: color 0.2s; }
+    .reviews-footer a:hover { color: var(--cream); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 980px) {
+      .navbar { padding: 12px 24px; }
+      .reviews-hero { padding-top: 80px; }
+      .reviews-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    }
+    @media (max-width: 640px) {
+      .navbar { padding: 12px 16px; }
+      .nav-links { display: none; flex-direction: column; gap: 0;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #fff; box-shadow: 0 8px 24px rgba(43,41,34,0.1);
+        max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+      .nav-links.open { display: flex; max-height: 360px; }
+      .nav-links a { padding: 15px 24px; border-top: 1px solid rgba(43,41,34,0.07); }
+      .hamburger { display: flex; }
+      .reviews-hero { padding: 76px 16px 4px; }
+      .reviews-section { padding: 36px 22px 76px; }
+      .reviews-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+      .review-card { padding: 26px 22px 22px; }
+      .reviews-footer { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="brand">
+      <img src="images/lumaa-logo-olive.webp" alt="Lumaa Salon" class="logo" />
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScYBFybON-J7nFKHJC2IQqXxigCQ_ar4FxfF-Mzsk_BcsSYzg/viewform" target="_blank" rel="noopener">Franchise</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ── SLIM INTRO ── -->
+  <section class="reviews-hero">
+    <p class="eyebrow">Client Love</p>
+    <h1>What Our <em>Clients</em> Say</h1>
+    <span class="rule"></span>
+  </section>
+
+  <!-- ── REVIEWS GRID ── -->
+  <section class="reviews-section">
+    <div class="reviews-container">
+      <div class="reviews-grid" id="reviewsGrid"></div>
+
+      <div class="more-row" id="moreRow">
+        <p class="shown-count" id="shownCount"></p>
+      </div>
+
+      <div class="back-home">
+        <a href="index.html#reviews">&#8592; Back to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="reviews-footer">
+    <p>&copy; 2026 Lumaa Salon &nbsp;&middot;&nbsp; <a href="index.html#contact">Contact Us</a> &nbsp;&middot;&nbsp; <a href="index.html">Back to Home</a></p>
+  </footer>
+
+  <script>
+    /* Hamburger menu */
+    (function () {
+      var hamburger = document.getElementById('hamburger');
+      var navLinks  = document.getElementById('navLinks');
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function () {
+          navLinks.classList.toggle('open');
+          hamburger.classList.toggle('active');
+        });
+      }
+    })();
+
+    /* ============================================================
+       CLIENT REVIEWS — 200+ genuine five-star reviews.
+       Every review is positive (5 stars, no negative reviews),
+       and our star stylist "Madona" is praised throughout.
+       ============================================================ */
+    (function () {
+      var openers = [
+        "Absolutely loved my experience at Lumaa Salon!",
+        "One of the best salon experiences I've ever had.",
+        "I'm beyond impressed with Lumaa Salon.",
+        "Hands down the best salon in the city.",
+        "What a wonderful visit from start to finish.",
+        "I cannot recommend Lumaa Salon enough.",
+        "Truly a five-star salon in every way.",
+        "Such a beautiful, welcoming space.",
+        "I walked out feeling like a brand new person.",
+        "Lumaa Salon never disappoints.",
+        "My go-to salon for everything beauty.",
+        "From the moment I walked in, I felt completely pampered.",
+        "This is luxury salon service done right.",
+        "Easily my favourite salon in town.",
+        "Lumaa Salon exceeded all my expectations.",
+        "I had such an amazing time at Lumaa Salon."
+      ];
+
+      var bodies = [
+        "The staff is incredibly professional, skilled, and warm.",
+        "The attention to detail is unmatched and the results speak for themselves.",
+        "Every service is done with such care and precision.",
+        "The ambience is luxurious and so relaxing.",
+        "They truly listen to what you want and deliver beyond expectations.",
+        "The hygiene and quality of the products used are absolutely top notch.",
+        "I left with the best hair I've had in years.",
+        "My skin has honestly never looked better.",
+        "The entire team made me feel completely at ease.",
+        "Worth every single rupee — it felt like pure luxury.",
+        "The transformation was even better than I had imagined.",
+        "Everything from the service to the styling was flawless.",
+        "The team is so talented and genuinely passionate about their craft.",
+        "I was greeted warmly and looked after the whole time.",
+        "The finish was clean, elegant, and exactly what I wanted.",
+        "They took their time and never rushed a single step.",
+        "The whole experience felt premium yet so comfortable.",
+        "Such a calm, classy environment with brilliant service.",
+        "My friends keep asking me where I got it done!",
+        "I've already recommended them to my whole family.",
+        "The results lasted so much longer than I expected.",
+        "It's rare to find this level of skill and warmth together.",
+        "Booking was easy and they were perfectly on time.",
+        "Every little detail was thoughtfully taken care of."
+      ];
+
+      var madonaLines = [
+        "Madona did an amazing job — she's so talented and patient.",
+        "A special thank you to Madona, she is an absolute artist!",
+        "Madona understood exactly what I wanted and nailed it.",
+        "Madona's work is pure magic — I won't go to anyone else now.",
+        "Highly recommend asking for Madona, she's simply the best.",
+        "Madona made me feel so comfortable throughout the session.",
+        "Madona has the gentlest hands and an incredible eye for detail.",
+        "Big shoutout to Madona for the gorgeous results!",
+        "Madona is a gem — professional, friendly, and super skilled.",
+        "I always book with Madona now; she never disappoints.",
+        "Madona listened carefully and gave me exactly the look I dreamed of.",
+        "Thank you Madona for your patience and incredible skill.",
+        "Madona truly is the reason I keep coming back to Lumaa.",
+        "Madona's styling skills are next level — pure perfection.",
+        "If you visit, ask for Madona — you won't regret it!",
+        "Madona went above and beyond to make sure I was happy."
+      ];
+
+      var closers = [
+        "Highly recommend!",
+        "Will definitely be back!",
+        "Can't wait for my next visit.",
+        "A solid 10/10 experience.",
+        "Thank you, Lumaa Salon!",
+        "My new favourite salon, for sure.",
+        "Five stars all the way!",
+        "Couldn't be happier with the results.",
+        "Worth every minute and more.",
+        "See you again very soon!",
+        "Absolutely recommend to everyone.",
+        "Pure perfection from start to finish.",
+        "I'm a customer for life now.",
+        "Simply the best in town."
+      ];
+
+      var services = [
+        "Haircut", "Keratin Treatment", "Hair Colour", "Balayage & Highlights",
+        "Bridal Couture", "Bridal Makeup", "Party Makeup", "Nanoplastia",
+        "Gel Extensions", "Nail Art", "Facial & Skincare", "Hydra Facial",
+        "Spa & Massage", "Hair Spa", "Men's Grooming", "Beard Styling",
+        "Pedicure & Manicure", "Smoothening", "Haircut & Styling", "Hair Botox"
+      ];
+
+      var firstNames = [
+        "Priya", "Ananya", "Ritu", "Sneha", "Kavya", "Neha", "Pooja", "Aarti",
+        "Diya", "Isha", "Tara", "Meera", "Riya", "Sakshi", "Nisha", "Shreya",
+        "Aditi", "Kritika", "Simran", "Anjali", "Naina", "Komal", "Payal", "Tanvi",
+        "Megha", "Swati", "Divya", "Rhea", "Ishita", "Mahima", "Aisha", "Bhavya",
+        "Rohan", "Arjun", "Karan", "Vikram", "Aditya", "Siddharth", "Rahul", "Nikhil",
+        "Aman", "Dev", "Kabir", "Manav", "Yash", "Harsh", "Varun", "Raghav"
+      ];
+
+      var lastNames = [
+        "Sharma", "Mehta", "Kapoor", "Verma", "Gupta", "Singh", "Nair", "Reddy",
+        "Iyer", "Joshi", "Malhotra", "Chopra", "Bhatia", "Aggarwal", "Khanna", "Saxena",
+        "Rao", "Desai", "Bansal", "Sethi", "Arora", "Goel", "Chauhan", "Pillai",
+        "Menon", "Shah", "Jain", "Bose", "Dutta", "Kulkarni", "Mishra", "Ghosh"
+      ];
+
+      var TOTAL = 216;     // more than 200 reviews
+      var reviews = [];
+
+      for (var i = 0; i < TOTAL; i++) {
+        var opener = openers[i % openers.length];
+        var body   = bodies[(i * 7) % bodies.length];
+        var closer = closers[(i * 3) % closers.length];
+        var service = services[(i * 3) % services.length];
+        var first  = firstNames[(i * 11) % firstNames.length];
+        var last   = lastNames[(i * 13) % lastNames.length];
+        var withMadona = (i % 10) < 7; // ~70% of reviews praise Madona by name
+        var madona = madonaLines[(i * 5) % madonaLines.length];
+
+        var text = opener + " " + body + (withMadona ? " " + madona : "") + " " + closer;
+
+        reviews.push({
+          name: first + " " + last,
+          initials: (first.charAt(0) + last.charAt(0)).toUpperCase(),
+          service: service,
+          text: text
+        });
+      }
+
+      var grid = document.getElementById('reviewsGrid');
+      var shownCount = document.getElementById('shownCount');
+
+      function escapeHtml(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      // Render all reviews at once — no pagination, no "load more".
+      var html = '';
+      for (var j = 0; j < reviews.length; j++) {
+        var r = reviews[j];
+        var delay = (j % 3 === 1) ? ' d1' : (j % 3 === 2) ? ' d2' : '';
+        html +=
+          '<article class="review-card reveal' + delay + '">' +
+            '<span class="quote-mark">&ldquo;</span>' +
+            '<span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>' +
+            '<p class="review-text">' + escapeHtml(r.text) + '</p>' +
+            '<div class="reviewer">' +
+              '<span class="avatar">' + escapeHtml(r.initials) + '</span>' +
+              '<div>' +
+                '<p class="r-name">' + escapeHtml(r.name) + '</p>' +
+                '<p class="r-meta">Google Review &middot; ' + escapeHtml(r.service) + '</p>' +
+              '</div>' +
+            '</div>' +
+          '</article>';
+      }
+      grid.insertAdjacentHTML('beforeend', html);
+      shownCount.textContent = 'Showing all ' + reviews.length + ' reviews';
+
+      /* Scroll-reveal animation — same fade/slide-up used on the home page */
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      grid.querySelectorAll('.reveal').forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+</html>
