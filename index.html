@@ -42,11 +42,12 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="home">
-    <!-- 2-image slider — JS translates track left every 3 s -->
+    <!-- 3-image slider — JS translates track left every 3 s -->
     <div class="hero-slides">
       <div class="hero-track">
         <div class="hero-slide slide-1"></div>
         <div class="hero-slide slide-2"></div>
+        <div class="hero-slide slide-3"></div>
       </div>
     </div>
     <div class="hero-overlay"></div>
@@ -57,6 +58,7 @@
     <div class="slide-dots">
       <span class="dot active" data-index="0"></span>
       <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
     </div>
   </section>
 
@@ -186,15 +188,15 @@
       <div class="gallery-grid">
         <div class="g-item g1 reveal">
           <span class="g-shine"></span>
-          <span class="g-caption"><span class="g-eyebrow">The Space</span><span class="g-title">Our Studio</span></span>
+          <span class="g-caption"><span class="g-eyebrow">The Space</span><span class="g-title">Wash Lounge</span></span>
         </div>
         <div class="g-item g2 reveal d1">
           <span class="g-shine"></span>
-          <span class="g-caption"><span class="g-eyebrow">Interior</span><span class="g-title">The Salon Floor</span></span>
+          <span class="g-caption"><span class="g-eyebrow">Detail</span><span class="g-title">The Product Bar</span></span>
         </div>
         <div class="g-item g3 reveal d2">
           <span class="g-shine"></span>
-          <span class="g-caption"><span class="g-eyebrow">Couture</span><span class="g-title">Bridal Looks</span></span>
+          <span class="g-caption"><span class="g-eyebrow">Interiors</span><span class="g-title">The Styling Floor</span></span>
         </div>
         <div class="g-item g4 reveal d3">
           <span class="g-shine"></span>
@@ -204,6 +206,13 @@
           <span class="g-shine"></span>
           <span class="g-caption"><span class="g-eyebrow">Comfort</span><span class="g-title">Styling Suite</span></span>
         </div>
+      </div>
+
+      <div class="gallery-cta">
+        <a class="btn-gallery-more" href="gallery.html">
+          View Full Gallery
+          <svg class="btn-more-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -746,13 +755,13 @@
     (function () {
       var track   = document.querySelector('.hero-track');
       var dots    = document.querySelectorAll('.slide-dots .dot');
-      var total   = 2;
+      var total   = 3;
       var current = 0;
 
       function goTo(n) {
         current = (n + total) % total;
-        // each slide is 1/2 of the track width
-        track.style.transform = 'translateX(-' + (current * 50) + '%)';
+        // each slide is 1/3 of the track width
+        track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
         dots.forEach(function (d, i) {
           d.classList.toggle('active', i === current);
         });
@@ -769,6 +778,7 @@
       function advance() { goTo(current + 1); }
       var timer = setInterval(advance, 3000);
     })();
+
     // Salon open/closed badge — open every day 10:00 AM – 9:00 PM IST
     (function updateStatus() {
       var dot  = document.getElementById('statusDot');
