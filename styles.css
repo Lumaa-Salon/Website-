@@ -252,25 +252,24 @@ a { text-decoration: none; color: inherit; }
   z-index: 0;
   overflow: hidden;
 }
-/* track holds the slides side by side */
+/* track holds both slides side by side */
 .hero-track {
   display: flex;
-  width: 300%;
+  width: 200%;
   height: 100%;
   /* slide transition: smooth cubic ease */
   transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
 }
 .hero-slide {
-  width: 33.3333%;
+  width: 50%;
   height: 100%;
   flex-shrink: 0;
   background-size: cover;
   background-position: center;
 }
 
-.slide-1 { background-image: url('images/hero-1.jpg'); }
-.slide-2 { background-image: url('images/hero-2.jpg'); }
-.slide-3 { background-image: url('images/hero-3.jpg'); }
+.slide-1 { background-image: url('images/hero-3.jpg'); }
+.slide-2 { background-image: url('images/hero-1.jpg'); }
 
 /* ---- dot indicators ---- */
 .slide-dots {
@@ -573,7 +572,8 @@ a { text-decoration: none; color: inherit; }
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 300px 300px;
+  /* taller rows: the source photos are portrait (2:3), so tall tiles crop far less */
+  grid-template-rows: 380px 380px;
   gap: 20px;
 }
 /* Ken Burns keyframes — 3 distinct pan+zoom paths */
@@ -599,7 +599,7 @@ a { text-decoration: none; color: inherit; }
   overflow: hidden;
   box-shadow: 0 10px 26px rgba(var(--deep-rgb), 0.1);
   background-size: cover;
-  background-position: center top;
+  background-position: center center;
   transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -610,8 +610,8 @@ a { text-decoration: none; color: inherit; }
   inset: 0;
   background-image: inherit;
   background-size: cover;
-  background-position: center top;
-  transform-origin: top center;
+  background-position: center center;
+  transform-origin: center center;
   will-change: transform;
   transition: filter 0.6s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
