@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <title>Meet Our Founders — Lumaa Salon</title>
+  <meta name="description" content="Meet the founders shaping Lumaa Salon — Mridul, CEO & Co-Founder, and Gagan, Managing Director & Co-Founder." />
+  <link rel="icon" type="image/webp" href="images/brand/lumaa-logo-white.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Playfair+Display:ital,wght@0,600;1,700&family=Jost:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #EED9BF;
+      --sage:  #9CA175;
+      --offwhite: #F6F2EB;
+      --earth: #937B67;
+      --deep:  #2E3326;
+      --ink:   #2B2922;
+      --white: #FFFFFF;
+      --cream-rgb: 238, 217, 191;
+      --sage-rgb:  156, 161, 117;
+      --earth-rgb: 147, 123, 103;
+      --deep-rgb:  46, 51, 38;
+      --ink-rgb:   43, 41, 34;
+      --serif:   'Playfair Display', serif;
+      --display: 'Cormorant Garamond', serif;
+      --sans:    'Jost', sans-serif;
+    }
+
+    /* fixed light palette — opt out of OS dark mode so browser-painted UI
+       (scrollbars, form controls) stays light too */
+    html { scroll-behavior: smooth; color-scheme: light; }
+    body { font-family: var(--sans); background: var(--white); color: var(--ink); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAVBAR (solid, light) ── */
+    .navbar {
+      position: fixed; inset: 0 0 auto 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 40px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(var(--ink-rgb), 0.08);
+    }
+    .brand { display: inline-flex; align-items: center; }
+    .logo { height: 42px; width: auto; }
+    .nav-links { display: flex; gap: 34px; }
+    .nav-links a {
+      color: var(--ink); font-size: 0.8rem; letter-spacing: 0.18em;
+      text-transform: uppercase; font-weight: 400;
+      position: relative; padding: 4px 0; transition: color 0.2s ease;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -2px;
+      width: 0; height: 1px; background: var(--sage);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+    .nav-links a:hover, .nav-links a.active { color: var(--sage); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: 0; cursor: pointer; padding: 6px;
+    }
+    .hamburger span { width: 24px; height: 2px; background: var(--ink); transition: transform 0.3s ease, opacity 0.3s ease; }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── SECTION HEAD ── */
+    .founders-head { text-align: center; padding: 120px 24px 8px; }
+    .founders-head .eyebrow {
+      font-family: var(--sans); text-transform: uppercase;
+      letter-spacing: 0.34em; font-size: 0.68rem; font-weight: 600;
+      color: var(--earth); margin-bottom: 18px;
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+    }
+    /* thin rules either side of the eyebrow, as in the reference */
+    .founders-head .eyebrow::before,
+    .founders-head .eyebrow::after {
+      content: ''; width: 30px; height: 1px;
+      background: rgba(var(--earth-rgb), 0.5);
+    }
+    .founders-head h1 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+      color: var(--ink); letter-spacing: -0.01em; line-height: 1.05;
+    }
+
+    /* ── FOUNDERS LAYOUT (two tall side-by-side cards) ── */
+    .founders-wrap { padding: 44px 40px 90px; }
+    .founders-inner { max-width: 1100px; margin: 0 auto; }
+
+    .founders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    /* Each founder is one tall photo card; the name and link sit over the
+       bottom of the image, with the role badge and number pinned to the top. */
+    .founder {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--offwhite);
+      box-shadow: 0 14px 40px rgba(var(--ink-rgb), 0.14);
+    }
+    .founder img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 42%;
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .founder:hover img { transform: scale(1.04); }
+
+    /* scrim keeps the overlaid copy readable against the cream palette */
+    .founder::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(
+          to top,
+          rgba(43,41,34,0.88) 0%,
+          rgba(43,41,34,0.58) 26%,
+          rgba(43,41,34,0.10) 54%,
+          rgba(43,41,34,0.00) 74%
+        ),
+        /* second pass darkens the top so the badge and number stay legible */
+        linear-gradient(
+          to bottom,
+          rgba(43,41,34,0.42) 0%,
+          rgba(43,41,34,0.10) 18%,
+          rgba(43,41,34,0.00) 32%
+        );
+    }
+
+    .founder-top {
+      position: absolute; z-index: 2;
+      top: 22px; left: 22px; right: 22px;
+      display: flex; align-items: center; justify-content: flex-end;
+    }
+    /* designation sits directly under the name */
+    .founder-role {
+      display: block; margin-top: 7px;
+      font-family: var(--sans); font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.18em;
+      font-size: 0.66rem; color: var(--cream);
+      text-shadow: 0 1px 6px rgba(43,41,34,0.55);
+    }
+    .founder-num {
+      font-family: var(--display); font-style: italic;
+      font-size: 1.3rem; letter-spacing: 0.12em;
+      color: var(--cream);
+      text-shadow: 0 1px 6px rgba(43,41,34,0.65);
+    }
+
+    .founder-body {
+      position: absolute; z-index: 2;
+      left: 26px; right: 26px; bottom: 24px;
+    }
+    .founder-name {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+      color: var(--white); line-height: 1.05; letter-spacing: -0.01em;
+    }
+
+    /* scroll-reveal */
+    .reveal { opacity: 0; transform: translateY(30px); will-change: opacity, transform; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    .back-home { text-align: center; margin-top: 70px; }
+    .back-home a {
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--earth); font-weight: 600; border-bottom: 1px solid rgba(var(--earth-rgb), 0.4);
+      padding-bottom: 3px; transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .back-home a:hover { color: var(--sage); border-color: var(--sage); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .navbar { padding: 12px 24px; }
+      .founders-wrap { padding: 40px 26px 84px; }
+      .founders-grid { gap: 22px; }
+      .founder-name { font-size: clamp(1.6rem, 4.4vw, 2.2rem); }
+      .founder-role { font-size: 0.58rem; letter-spacing: 0.14em; }
+      .founder-top { top: 16px; left: 16px; right: 16px; }
+      .founder-body { left: 18px; right: 18px; bottom: 18px; }
+    }
+    @media (max-width: 640px) {
+      .navbar { padding: 12px 16px; }
+      .nav-links { display: none; flex-direction: column; gap: 0;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #fff; box-shadow: 0 8px 24px rgba(43,41,34,0.1);
+        max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+      .nav-links.open { display: flex; max-height: 200px; }
+      .nav-links a { padding: 15px 24px; border-top: 1px solid rgba(43,41,34,0.07); }
+      .hamburger { display: flex; }
+      .founders-head { padding: 92px 16px 4px; }
+      .founders-wrap { padding: 34px 16px 68px; }
+      /* two tall cards side by side get too narrow on a phone — stack them */
+      .founders-grid { grid-template-columns: 1fr; gap: 20px; max-width: 420px; margin: 0 auto; }
+      .founder { aspect-ratio: 4 / 5; }
+      .founder-name { font-size: 2rem; }
+      .founder-role { font-size: 0.6rem; letter-spacing: 0.15em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR (only Founders) ── -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="brand">
+      <img src="images/brand/lumaa-logo-olive.webp" alt="Lumaa Salon" class="logo" />
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#reviews">Reviews</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScYBFybON-J7nFKHJC2IQqXxigCQ_ar4FxfF-Mzsk_BcsSYzg/viewform" target="_blank" rel="noopener">Franchise</a>
+      <a href="founders.html" class="active">Founders</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ── SECTION HEAD ── -->
+  <section class="founders-head reveal">
+    <p class="eyebrow">Lumaa Salon</p>
+    <h1>Meet Our Founders</h1>
+  </section>
+
+  <!-- ── FOUNDERS ── -->
+  <section class="founders-wrap">
+    <div class="founders-inner">
+
+      <div class="founders-grid">
+
+        <article class="founder reveal">
+          <img src="images/founders/founder-mridul.jpg" alt="Mridul, CEO &amp; Co-Founder" loading="lazy" />
+          <div class="founder-top">
+            <span class="founder-num">01</span>
+          </div>
+          <div class="founder-body">
+            <h2 class="founder-name">Mridul</h2>
+            <span class="founder-role">CEO &amp; Co-Founder</span>
+          </div>
+        </article>
+
+        <article class="founder reveal">
+          <img src="images/founders/founder-gagan.jpg" alt="Gagan, Managing Director &amp; Co-Founder" loading="lazy" />
+          <div class="founder-top">
+            <span class="founder-num">02</span>
+          </div>
+          <div class="founder-body">
+            <h2 class="founder-name">Gagan</h2>
+            <span class="founder-role">Managing Director &amp; Co-Founder</span>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="back-home">
+        <a href="index.html">&#8592; Back to Home</a>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    /* Hamburger menu */
+    (function () {
+      var hamburger = document.getElementById('hamburger');
+      var navLinks  = document.getElementById('navLinks');
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function () {
+          navLinks.classList.toggle('open');
+          hamburger.classList.toggle('active');
+        });
+      }
+    })();
+
+    /* Scroll-reveal */
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); obs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.14 });
+      items.forEach(function (el) { obs.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>
